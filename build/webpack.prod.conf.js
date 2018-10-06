@@ -142,7 +142,10 @@ const webpackConfig = merge(baseWebpackConfig, {
           optimize: '3',
           colors: 32,
           // 设置图片的损失率
-          lossy: 80
+          lossy: 200,
+          resize: '650x400',
+          // 每个图层单独resize
+          resizeMethod: 'sample'
         })
       ]
     })

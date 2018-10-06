@@ -179,7 +179,7 @@ body
     width 200px
     height 200px
 .swiper-container
-  padding 100px 0
+  padding 100px 0 !important
 .wrapper
   // display inline-block
   width 100%
@@ -237,7 +237,7 @@ body
 
 @media screen and (max-width: 1200px)
   .swiper-container
-    padding 0
+    padding 0 !important
   .demo
     card-height = 200px
     width 100%
