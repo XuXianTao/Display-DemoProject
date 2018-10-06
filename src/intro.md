@@ -58,6 +58,13 @@
   ```
 2. 其次添加过渡效果,使用`vue-progressive-image`
 
+#### 提示错误prop设置
+![](./screenshot/error_prop.png)
+- 问题：这是由于原来是通过鼠标的`enter` `out`事件直接修改目标元素的`src`属性导致的
+- 方案：
+  + 添加`$data`下的`demo_img`用来作为元素绑定的数据，初始化(`created ()`)后赋值为传入的`$props.cover`
+  + 在鼠标事件触发的时候，切换该数据对象(切换png封面图与gif动态图)
+
 #### 轮播图组件的使用尝试
 - 难点：
   + 组件内使用`swiper.js`轮播图组件
@@ -67,3 +74,6 @@
 
 #### 添加markdown说明文档
 - 添加`Vue-markdown-loader`, 复用`Dialog(Demo)`中的说明文档组件
+
+#### 移动端适配
+- 修改卡片布局，样式调整

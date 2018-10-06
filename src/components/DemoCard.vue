@@ -6,7 +6,7 @@
       <div class="card-title">
         <div class="card-title__bar">{{title}}</div>
       </div>
-      <progressive-background class="card-img" ref="card" :src="cover"/>
+      <progressive-background class="card-img" ref="card" :src="demo_img"/>
       <img class="card-img__gif" :src="gif"/>
     </a>
     <div class="card-msg" v-html="msg">
@@ -28,17 +28,25 @@ export default {
     gif: String,
     msg: String
   },
+  data () {
+    return {
+      demo_img: ''
+    }
+  },
   methods: {
     changeGif (ev) {
       if (this.$props.gif) {
-        this.$refs.card.src = this.$props.gif
+        this.$data.demo_img = this.$props.gif
       }
       this.$refs.cardbg.style.visibility = 'hidden'
     },
     changeCover (ev) {
-      this.$refs.card.src = this.$props.cover
+      this.$data.demo_img = this.$props.cover
       this.$refs.cardbg.style.visibility = 'visible'
     }
+  },
+  created () {
+    this.$data.demo_img = this.$props.cover
   }
 }
 </script>

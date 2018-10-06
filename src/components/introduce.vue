@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     showMd () {
-      this.$refs.md.classList.toggle('active')
+      this.$refs.md.classList.add('active')
     },
     hideMd () {
       this.$refs.md.classList.remove('active')
@@ -34,8 +34,6 @@ export default {
   theme-green= #41B883
   z-index 100
   position fixed
-  top 10px
-  left 10px
   text-align left
   .wrapper
     visibility hidden
@@ -73,14 +71,21 @@ export default {
     z-index 100
     left 50%
     top 50px
-    width 800px
-    height 800px
+    box-sizing border-box
+    width 60%
+    height 75%
     margin-left -(@width / 2)
     padding 20px
     background-color white
     overflow auto
     white-space normal
     transition opacity .5s, visibility .5s
+    @media screen and (max-width 1200px) {
+      top 80px
+      left 0
+      width 100vw
+      margin-left 0
+    }
   &.active
     .wrapper
       visibility visible

@@ -2,9 +2,7 @@
   <div id="app">
     <div class="head">
       <img class="icon" src="./assets/icon.jpg">
-      <h1>
-        The Demos/Projects by <a :href="person" target="_blank">XXT</a>
-      </h1>
+      <h1>The Demos/Projects by <a :href="person" target="_blank">XXT</a></h1>
     </div>
     <!-- <router-view/> -->
     <swiper :options="swiperOption">
@@ -131,6 +129,7 @@ export default {
       swiperOption: {
         loop: false,
         autoplay: false,
+        spaceBetween: 30,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
@@ -174,19 +173,23 @@ body
   white-space nowrap
 }
 .head
+  white-space pre-wrap
+  text-align center
   .icon
     width 200px
     height 200px
 .swiper-container
-  overflow visible !important
+  padding 100px 0
 .wrapper
   // display inline-block
   width 100%
   text-align center
 .demo
+  demo-width = 1200px
+  demo-height = 500px
   display inline-block
-  width 1200px
-  height 500px
+  width demo-width
+  height demo-height
   margin-top 20px
   overflow visible
   vertical-align top
@@ -209,16 +212,16 @@ body
     vertical-align top
     &-item
       width 49%
-      height 48%
+      height 49%
       &:nth-child(2n+1) {
         margin-right 2%
       }
       &:nth-child(n+3) {
-        margin-top 3%
+        margin-top demo-height * 0.02
       }
   &-other
     display inline-block
-    width 1000px
+    width demo-width
     height 500px
     text-align center
     font-size 0
@@ -231,4 +234,25 @@ body
       &:nth-child(n+3) {
         margin-top 3%
       }
+
+@media screen and (max-width: 1200px)
+  .swiper-container
+    padding 0
+  .demo
+    card-height = 200px
+    width 100%
+    height auto
+    vertical-align middle
+    &-left
+      width 100%
+      height card-height
+      padding-left 20px
+    &-right, &-other
+      box-sizing border-box
+      width 100%
+      padding 0 20px
+      &-item
+        width 100%
+        height card-height
+        margin-top 15px
 </style>
