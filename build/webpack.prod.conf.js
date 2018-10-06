@@ -10,6 +10,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const ImageMinPlugin = require('imagemin-webpack-plugin').default
+const imageminGiflossy = require('imagemin-giflossy');
 
 const env = require('../config/prod.env')
 
@@ -115,7 +117,35 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+
+    // Minimize the images
+    new ImageMinPlugin({
+      test: /\.(jpg|png|gif)$/,
+      jpegtran: {
+        // 读取的时候模糊渐进
+        progressive: true
+      },
+      pngquant: {
+        // 用最少的颜色，达到期望的转换后的颜色质量范围，若结果小于最小值则不会被保存
+        quality: '0-50',
+        // 希望的图片读取速度
+        speed: 10
+      },
+      optipng: {
+        // 优化等级越大图片越小
+        optimizationLevel: 7
+      },
+      plugins: [
+        imageminGiflossy({
+          optimizationLevel: 3,
+          optimize: '3',
+          colors: 32,
+          // 设置图片的损失率
+          lossy: 80
+        })
+      ]
+    })
   ]
 })
 

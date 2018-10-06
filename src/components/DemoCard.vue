@@ -9,6 +9,7 @@
     </a>
     <div class="card-msg" v-html="msg">
     </div>
+    <img :src="gif" alt="" style="visibility: hidden; width: 0; height: 0;">
   </div>
 </template>
 
@@ -23,11 +24,15 @@ export default {
   },
   methods: {
     changeGif (ev) {
-      if (this.$props.gif) this.$refs.card.style.backgroundImage = 'url(' + this.$props.gif + ')'
+      if (this.$props.gif) {
+        this.$refs.card.style.backgroundImage = 'url(' + this.$props.gif + ')'
+        this.$refs.card.style.backgroundSize = '100% 100%'
+      }
       this.$refs.cardbg.style.visibility = 'hidden'
     },
     changeCover (ev) {
       this.$refs.card.style.backgroundImage = 'url(' + this.$props.cover + ')'
+      this.$refs.card.style.backgroundSize = 'cover'
       this.$refs.cardbg.style.visibility = 'visible'
     }
   }
@@ -48,6 +53,7 @@ export default {
     display inline-block
     width 100%
     height 100%
+    background-color white
     background-repeat no-repeat
     background-size cover
     background-position center
@@ -107,7 +113,7 @@ export default {
     padding 10px
     background-color th-green
     text-align left
-    font-size 30px
+    font-size 20px
     color white
     transition left .5s
 </style>
