@@ -1,19 +1,25 @@
 <template>
   <div class="card">
-    <a :href="url" target="_blank" class="content" ref="card" :style="{'background-image': 'url(' + cover + ')'}" @mouseenter="changeGif" @mouseout="changeCover">
+    <a :href="url" target="_blank" class="content" @mouseenter="changeGif" @mouseout="changeCover">
       <div class="card-bg" ref="cardbg"></div>
       <div class="card-bg2"></div>
       <div class="card-title">
         <div class="card-title__bar">{{title}}</div>
       </div>
+      <progressive-background class="card-img" ref="card" :src="cover"/>
+      <img class="card-img__gif" :src="gif"/>
     </a>
     <div class="card-msg" v-html="msg">
     </div>
-    <img :src="gif" alt="" style="visibility: hidden; width: 0; height: 0;">
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import VueProgressiveImage from 'vue-progressive-image'
+Vue.use(VueProgressiveImage, {
+  blur: 30
+})
 export default {
   props: {
     title: String,
@@ -25,14 +31,12 @@ export default {
   methods: {
     changeGif (ev) {
       if (this.$props.gif) {
-        this.$refs.card.style.backgroundImage = 'url(' + this.$props.gif + ')'
-        this.$refs.card.style.backgroundSize = '100% 100%'
+        this.$refs.card.src = this.$props.gif
       }
       this.$refs.cardbg.style.visibility = 'hidden'
     },
     changeCover (ev) {
-      this.$refs.card.style.backgroundImage = 'url(' + this.$props.cover + ')'
-      this.$refs.card.style.backgroundSize = 'cover'
+      this.$refs.card.src = this.$props.cover
       this.$refs.cardbg.style.visibility = 'visible'
     }
   }
@@ -49,7 +53,6 @@ export default {
   box-shadow 0 0 10px th-dark
   transition transform .5s, z-index .5s
   .content
-    z-index 0
     display inline-block
     width 100%
     height 100%
@@ -57,12 +60,15 @@ export default {
     background-repeat no-repeat
     background-size cover
     background-position center
+    overflow hidden
+    text-align center
   &:hover
     z-index 100
     transform scale(1.5)
     .card-msg
       left 100%
   &-bg
+    z-index 50
     position absolute
     top 0
     left 0
@@ -70,11 +76,20 @@ export default {
     height 100%
     background-color rgba(255, 255, 255, .5)
   &-bg2
+    z-index 50
     position absolute
     width 100%
     height 100%
+  &-img
+    display inline-block
+    height 100%
+    &__gif
+      width 0
+      height 0
+      visibility hidden
   &-title
     title-bg = rgba(0, 0, 0, .5)
+    z-index 100
     pointer-events none
     display inline-block
     position absolute
@@ -87,6 +102,7 @@ export default {
     background-color title-bg
     font-size 25px
     font-weight bolder
+    line-height 40px
     color white
     &__bar
       width 100%
@@ -101,19 +117,20 @@ export default {
         width 0
         height 0
         border-top tri-width solid transparent
-        border-right tri-width solid title-bg
+        border-right tri-width solid rgba(title-bg, .3)
   &-msg
     z-index -10
     position absolute
     top 0
     left 0
     box-sizing border-box
-    max-width 100%
+    // max-width 100%
     height 100%
-    padding 10px
+    padding 5px
     background-color th-green
     text-align left
-    font-size 20px
+    font-size 15px
+    overflow hidden
     color white
     transition left .5s
 </style>
