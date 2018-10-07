@@ -103,7 +103,7 @@ export default {
           cover: require('./assets/tp.png'),
           url: this.getUrl('tp'),
           msg: `
-          <h5>2018.9.1-2018.10.1</h5>
+          <h5>2018.9.1-2018.9.10</h5>
           <h4>Thinkphp@5.1</h4>
           <a href="https://github.com/XuXianTao/thinkphp5.1-restfulapi__custom#thinkphp51-rest-api---for-smart-car" target="_blank">在线文档</a><br>
           目前线上版本没有导入数据`
@@ -114,7 +114,7 @@ export default {
           cover: require('./assets/lab.png'),
           url: this.getUrl('lab'),
           gif: require('./assets/lab.gif'),
-          msg: `<h5>2018.9.1-2018.10.1</h5><h4>Thinkphp@5.1</h4>
+          msg: `<h5>2018.3.1-2018.7.1</h5><h4>Thinkphp@5.1</h4>
           学生签到统计,故障反馈|维护|统计,助理工作时长登记(Excel导入导出等)`
         }
       ],

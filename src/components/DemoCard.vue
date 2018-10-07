@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <a :href="url" target="_blank" class="content" @mouseenter="changeGif" @mouseout="changeCover">
+    <a :href="'javascript:window.open(\'' + url + '\', \''+ title +' \',\'resizable\')'" target="_blank" class="content" @mouseenter="changeGif" @mouseout="changeCover">
       <div class="card-bg" ref="cardbg"></div>
       <div class="card-bg2"></div>
       <div class="card-title">
@@ -9,8 +9,7 @@
       <progressive-background class="card-img" ref="card" :src="demo_img"/>
       <img class="card-img__gif" :src="gif"/>
     </a>
-    <div class="card-msg" v-html="msg">
-    </div>
+    <div class="card-msg" v-html="msg_ex"></div>
   </div>
 </template>
 
@@ -45,6 +44,11 @@ export default {
       this.$refs.cardbg.style.visibility = 'visible'
     }
   },
+  computed: {
+    msg_ex () {
+      return this.msg + `<a class="link" href='${this.url}' target='_blank'>&crarr;</a>`
+    }
+  },
   created () {
     this.$data.demo_img = this.$props.cover
   }
@@ -60,6 +64,20 @@ export default {
   display inline-block
   box-shadow 0 0 10px th-dark
   transition transform .5s, z-index .5s
+  &:hover
+    z-index 100
+    transform scale(1.5)
+    .card-msg
+      left 100%
+    @media screen and (max-width: 1200px)
+      z-index 0
+      transform none
+      .card-msg
+        z-index 50
+        left unset
+        right 0
+      .card-title
+        display none
   .content
     display inline-block
     width 100%
@@ -70,11 +88,6 @@ export default {
     background-position center
     overflow hidden
     text-align center
-  &:hover
-    z-index 100
-    transform scale(1.5)
-    .card-msg
-      left 100%
   &-bg
     z-index 50
     position absolute
@@ -132,7 +145,6 @@ export default {
     top 0
     left 0
     box-sizing border-box
-    // max-width 100%
     height 100%
     padding 5px
     background-color th-green
@@ -141,4 +153,15 @@ export default {
     overflow hidden
     color white
     transition left .5s
+    >>> .link
+      position absolute
+      top 0
+      right 0
+      padding 2px 6px
+      box-shadow -1px 1px 5px 1px th-dark
+      background-color white
+      font-weight bolder
+      text-decoration none
+      text-shadow 0 0 3px th-green
+      color th-dark
 </style>
