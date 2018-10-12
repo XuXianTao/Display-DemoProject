@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <a :href="'javascript:window.open(\'' + url + '\', \''+ title +' \',\'resizable\')'" target="_blank" class="content" @mouseenter="changeGif" @mouseout="changeCover">
+    <a @click="toNewTarget" href="#" target="_blank" class="content" @mouseenter="changeGif" @mouseout="changeCover">
       <div class="card-bg" ref="cardbg"></div>
       <div class="card-bg2"></div>
       <div class="card-title">
@@ -42,6 +42,9 @@ export default {
     changeCover (ev) {
       this.$data.demo_img = this.$props.cover
       this.$refs.cardbg.style.visibility = 'visible'
+    },
+    toNewTarget (ev) {
+      window.open(this.$props.url, this.$props.title, 'resizable')
     }
   },
   computed: {
@@ -74,7 +77,7 @@ export default {
       transform none
       .card-msg
         z-index 50
-        left unset
+        left 0
         right 0
       .card-title
         display none

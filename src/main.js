@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import VueSwiper from 'vue-awesome-swiper'
+import 'babel-polyfill'
 import 'swiper/dist/css/swiper.min.css'
 
 Vue.config.productionTip = false
