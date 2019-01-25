@@ -116,6 +116,18 @@ export default {
           gif: require('./assets/lab.gif'),
           msg: `<h5>2018.3.1-2018.7.1</h5><h4>Thinkphp@5.1</h4>
           学生签到统计,故障反馈|维护|统计,助理工作时长登记(Excel导入导出等)`
+        },
+        {
+          id: 7,
+          title: 'QA数据管理系统[毕设]',
+          cover: require('./assets/qa.png'),
+          url: this.getUrl('gpvue'),
+          gif: require('./assets/qa.gif'),
+          msg: `
+          <h5>2018.12.1-now</h5>
+          <h4 style="margin: 5px 0;">Vue-cli@3, Thinkphp@5.1</h4>
+          前后端完全分离，前端iView组件库，后端则根据用户类型添加不同的访问控制
+          `
         }
       ],
       blog: {
